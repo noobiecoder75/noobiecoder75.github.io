@@ -1,25 +1,25 @@
 import { A } from "@solidjs/router";
-import { FiHome, FiBook, FiMail, FiSettings, FiLogOut, FiMenu, FiX, FiPlusCircle, FiMessageSquare, FiUsers } from 'solid-icons/fi';
+import { FiHome, FiBook, FiMail, FiSettings, FiLogOut, FiMenu, FiX, FiPlusCircle } from 'solid-icons/fi';
 import { createSignal, onMount, createEffect } from "solid-js";
 import styles from "./Navbar.module.css";
 import { For, Show } from "solid-js/web";
 import { useNavigate } from "@solidjs/router";
 import { refreshNavbar, setRefreshNavbar } from "../state/refreshState"; // Import the refresh state
-import CommissionSettings from "./CommissionSettings";
-import CommissionDashboard from "./CommissionDashboard";
-import { TbSettings, TbChartBar } from 'solid-icons/tb';
 
 function Navbar() {
   const [isSidebarOpen, setIsSidebarOpen] = createSignal(false);
   const [recentQuotes, setRecentQuotes] = createSignal([]);
   const [bookings, setBookings] = createSignal([]);
-  const [showCommissionSettings, setShowCommissionSettings] = createSignal(false);
   const navigate = useNavigate();
 
   const loadData = () => {
     const savedQuotes = JSON.parse(localStorage.getItem('recentQuotes') || '[]');
     const savedBookings = JSON.parse(localStorage.getItem('bookings') || '[]');
-    setRecentQuotes(savedQuotes);
+    // Limit to last 3 quotes, sorted by date
+    const limitedQuotes = savedQuotes
+      .sort((a, b) => new Date(b.date) - new Date(a.date))
+      .slice(0, 3);
+    setRecentQuotes(limitedQuotes);
     setBookings(savedBookings);
   };
 
@@ -68,7 +68,10 @@ function Navbar() {
             {isSidebarOpen() ? <FiX size={24} /> : <FiMenu size={24} />}
           </button>
           <A href="/" class={styles.logoLink}>
-            <div class={styles.logo}>TravelGPT</div>
+            <div class={styles.logo}>
+              <span class={styles.logoMain}>Booking GPT</span>
+              <span class={styles.logoTagline}>AI Travel Assistant</span>
+            </div>
           </A>
         </div>
 
@@ -84,19 +87,12 @@ function Navbar() {
         <div class={styles.sidebarContent}>
           {/* Navigation Section */}
           <div class={styles.sidebarSection}>
-            <div class={styles.sectionHeader}>
-              <h3>Navigation</h3>
-            </div>
             <div class={styles.navLinks}>
               <A href="/" class={styles.navLink} onClick={toggleSidebar}>
                 <FiHome />
-                <span>Dashboard</span>
+                <span>Home</span>
               </A>
-              <A href="/contacts" class={styles.navLink} onClick={toggleSidebar}>
-                <FiUsers />
-                <span>Contacts</span>
-              </A>
-              <A href="/new-quote" class={styles.navLink} onClick={toggleSidebar}>
+              <A href="/commission-dashboard" class={styles.navLink} onClick={toggleSidebar}>
                 <FiPlusCircle />
                 <span>New Quote</span>
               </A>
@@ -108,17 +104,9 @@ function Navbar() {
                 <FiMail />
                 <span>Messages</span>
               </A>
-              <A href="/prompt" class={styles.navLink} onClick={toggleSidebar}>
-                <FiMessageSquare />
-                <span>Prompt</span>
-              </A>
               <A href="/settings" class={styles.navLink} onClick={toggleSidebar}>
                 <FiSettings />
                 <span>Settings</span>
-              </A>
-              <A href="/commission-dashboard" class={styles.navLink} onClick={toggleSidebar}>
-                <TbChartBar />
-                <span>Commission Dashboard</span>
               </A>
             </div>
           </div>
@@ -225,65 +213,6 @@ function Navbar() {
               ))}
             </div>
           </div>
-
-          <div class={styles.sidebarSection}>
-            <div class={styles.sectionHeader}>
-              <h3>Recent Bookings</h3>
-              <button 
-                class={styles.viewMoreButton}
-                onClick={() => handleViewMore('bookings')}
-              >
-                View More
-              </button>
-            </div>
-            <div class={styles.activityList}>
-              <For each={bookings()}>
-                {booking => (
-                  <div 
-                    class={styles.activityItem}
-                    onClick={() => navigate(`/booking/${booking.id}`)}
-                    role="button"
-                    tabindex="0"
-                  >
-                    <div class={styles.activityInfo}>
-                      <strong>{booking.client}</strong>
-                      <span>{booking.destination}</span>
-                    </div>
-                    <div class={styles.activityMeta}>
-                      <span class={styles.activityDate}>{booking.date}</span>
-                      <span class={`${styles.status} ${styles.confirmed}`}>
-                        ${booking.amount?.toLocaleString()}
-                      </span>
-                    </div>
-                  </div>
-                )}
-              </For>
-              <Show when={bookings().length === 0}>
-                <div class={styles.emptyState}>
-                  No recent bookings
-                </div>
-              </Show>
-            </div>
-          </div>
-
-          <div class={styles.sidebarSection}>
-            <div class={styles.sectionHeader}>
-              <h3>Commission Dashboard</h3>
-            </div>
-            <CommissionDashboard />
-            <button 
-              class={styles.settingsButton}
-              onClick={() => setShowCommissionSettings(true)}
-            >
-              <TbSettings />
-              Commission Settings
-            </button>
-          </div>
-
-          <button class={styles.logoutButton}>
-            <FiLogOut />
-            <span>Logout</span>
-          </button>
         </div>
       </div>
 
@@ -292,10 +221,10 @@ function Navbar() {
         <div class={styles.overlay} onClick={toggleSidebar} />
       )}
 
-      <CommissionSettings 
-        isOpen={showCommissionSettings()} 
-        onClose={() => setShowCommissionSettings(false)} 
-      />
+      <button class={styles.logoutButton}>
+        <FiLogOut />
+        <span>Logout</span>
+      </button>
     </>
   );
 }
