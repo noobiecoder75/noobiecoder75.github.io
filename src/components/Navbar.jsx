@@ -1,5 +1,6 @@
 import { A } from "@solidjs/router";
 import { FiHome, FiBook, FiMail, FiSettings, FiLogOut, FiMenu, FiX, FiPlusCircle } from 'solid-icons/fi';
+import { TbChartBar } from 'solid-icons/tb';
 import { createSignal, onMount, createEffect } from "solid-js";
 import styles from "./Navbar.module.css";
 import { For, Show } from "solid-js/web";
@@ -93,6 +94,10 @@ function Navbar() {
                 <span>Home</span>
               </A>
               <A href="/commission-dashboard" class={styles.navLink} onClick={toggleSidebar}>
+                <TbChartBar />
+                <span>Commission Dashboard</span>
+              </A>
+              <A href="/prompt" class={styles.navLink} onClick={toggleSidebar}>
                 <FiPlusCircle />
                 <span>New Quote</span>
               </A>

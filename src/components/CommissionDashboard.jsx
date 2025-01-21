@@ -1,4 +1,4 @@
-import { createSignal, onMount } from "solid-js";
+import { createSignal, onMount, createEffect } from "solid-js";
 import { 
   potentialRevenue, 
   realizedRevenue, 
@@ -8,13 +8,45 @@ import {
 import { TbChartBar, TbPlane, TbHome, TbCar, TbMap } from 'solid-icons/tb';
 import styles from "./CommissionDashboard.module.css";
 
+/**
+ * CommissionDashboard Component
+ * Displays an overview of commission earnings and breakdowns by travel category
+ */
 function CommissionDashboard() {
-  onMount(() => {
-    loadCommissionData();
+  console.log('CommissionDashboard: Component initialized');
+
+  // Load commission data when component mounts
+  onMount(async () => {
+    console.log('CommissionDashboard: Component mounted');
+    try {
+      await loadCommissionData();
+      console.log('CommissionDashboard: Data loaded successfully');
+    } catch (error) {
+      console.error('CommissionDashboard: Error loading data:', error);
+    }
+  });
+
+  // Track changes in revenue data
+  createEffect(() => {
+    console.log('CommissionDashboard: Revenue data updated', {
+      realized: realizedRevenue(),
+      potential: potentialRevenue()
+    });
+  });
+
+  // Track changes in commission breakdowns
+  createEffect(() => {
+    console.log('CommissionDashboard: Commission breakdowns updated', {
+      flights: commissionsByType().flights,
+      hotels: commissionsByType().hotels,
+      transport: commissionsByType().transport,
+      activities: commissionsByType().activities
+    });
   });
 
   return (
     <div class={styles.dashboard}>
+      {/* Dashboard Header */}
       <div class={styles.header}>
         <div class={styles.headerTitle}>
           <TbChartBar />
@@ -22,12 +54,15 @@ function CommissionDashboard() {
         </div>
       </div>
 
+      {/* Revenue Summary Cards */}
       <div class={styles.summaryCards}>
+        {/* Realized Revenue Card */}
         <div class={styles.card}>
           <h3>Realized Revenue</h3>
           <div class={styles.amount}>${realizedRevenue().toLocaleString()}</div>
           <div class={styles.label}>From confirmed bookings</div>
         </div>
+        {/* Potential Revenue Card */}
         <div class={styles.card}>
           <h3>Potential Revenue</h3>
           <div class={styles.amount}>${potentialRevenue().toLocaleString()}</div>
@@ -35,9 +70,11 @@ function CommissionDashboard() {
         </div>
       </div>
 
+      {/* Commission Breakdown by Category */}
       <div class={styles.breakdownSection}>
         <h3>Commission Breakdown</h3>
         <div class={styles.breakdown}>
+          {/* Flights Category */}
           <div class={styles.category}>
             <div class={styles.categoryHeader}>
               <TbPlane />
@@ -54,6 +91,8 @@ function CommissionDashboard() {
               </div>
             </div>
           </div>
+
+          {/* Hotels Category */}
           <div class={styles.category}>
             <div class={styles.categoryHeader}>
               <TbHome />
@@ -70,6 +109,8 @@ function CommissionDashboard() {
               </div>
             </div>
           </div>
+
+          {/* Transportation Category */}
           <div class={styles.category}>
             <div class={styles.categoryHeader}>
               <TbCar />
@@ -86,6 +127,8 @@ function CommissionDashboard() {
               </div>
             </div>
           </div>
+
+          {/* Activities Category */}
           <div class={styles.category}>
             <div class={styles.categoryHeader}>
               <TbMap />
