@@ -91,44 +91,57 @@ class ChatGPTService {
 
       console.log('📥 Received response status:', response.status);
       
+      if (!response.ok) {
+        const errorData = await response.json();
+        console.error('❌ API Response Error:', errorData);
+        throw new Error(`API Error (${response.status}): ${errorData.error?.message || 'Unknown error'}`);
+      }
+      
       const data = await response.json();
       console.log('📦 Raw OpenAI response:', data);
 
-      if (data.error) {
-        console.error('❌ OpenAI API Error:', data.error);
-        throw new Error(data.error.message || 'OpenAI API Error');
+      if (!data.choices?.[0]?.message?.function_call) {
+        console.error('❌ Invalid API Response Structure:', data);
+        throw new Error('Invalid response from OpenAI API: Missing function call data');
       }
 
       const functionCall = data.choices[0].message.function_call;
-      const parsedArgs = JSON.parse(functionCall.arguments);
       
-      // Validate dates are in the future
-      const validateDate = (dateStr) => {
-        if (!dateStr) return undefined;
-        const date = new Date(dateStr);
-        const tomorrowDate = new Date(tomorrow);
-        return date >= tomorrowDate ? dateStr : undefined;
-      };
+      try {
+        const parsedArgs = JSON.parse(functionCall.arguments);
+        
+        // Validate dates are in the future
+        const validateDate = (dateStr) => {
+          if (!dateStr) return undefined;
+          const date = new Date(dateStr);
+          const tomorrowDate = new Date(tomorrow);
+          return date >= tomorrowDate ? dateStr : undefined;
+        };
 
-      // Add default values and validate dates
-      const processedParams = {
-        ...parsedArgs,
-        origin: 'YVR', // Default origin
-        departureDate: validateDate(parsedArgs.departureDate),
-        returnDate: validateDate(parsedArgs.returnDate),
-        maxBudget: parsedArgs.maxBudget || 10000,
-        travelers: parsedArgs.travelers || 1
-      };
-      
-      if (!processedParams.departureDate) {
-        throw new Error('Departure date must be in the future');
+        // Add default values and validate dates
+        const processedParams = {
+          ...parsedArgs,
+          origin: 'YVR', // Default origin
+          departureDate: validateDate(parsedArgs.departureDate),
+          returnDate: validateDate(parsedArgs.returnDate),
+          maxBudget: parsedArgs.maxBudget || 10000,
+          travelers: parsedArgs.travelers || 1
+        };
+        
+        if (!processedParams.departureDate) {
+          throw new Error('Departure date must be in the future');
+        }
+        
+        console.log('✅ Processed parameters:', processedParams);
+        return processedParams;
+      } catch (parseError) {
+        console.error('❌ Failed to parse function arguments:', parseError);
+        throw new Error('Failed to parse travel parameters from API response');
       }
-      
-      console.log('✅ Processed parameters:', processedParams);
-      return processedParams;
     } catch (error) {
       console.error('❌ ChatGPT processing error:', error);
-      throw error;
+      // Add more context to the error message
+      throw new Error(`Failed to generate itineraries: ${error.message}`);
     }
   }
 }
