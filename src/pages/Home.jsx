@@ -140,16 +140,6 @@ function Home() {
     ]
   };
 
-  // Navigation handler for new quote creation
-  const handleNewQuote = () => {
-    try {
-      navigate('/new-quote');
-    } catch (err) {
-      console.error("Navigation error:", err);
-      setError("Failed to create new quote");
-    }
-  };
-
   // Modified recent search click handler
   const handleRecentSearchClick = (search) => {
     navigate('/prompt', { 
@@ -413,27 +403,6 @@ function Home() {
         </section>
       </ErrorBoundary>
 
-      {/* Quick Actions Section */}
-      <section class={styles.quickActions}>
-        <div class={styles.actionGrid}>
-          <button class={styles.actionButton}>
-            <FiPlusCircle />
-            <span>New Quote</span>
-            <p>Create a new travel itinerary</p>
-          </button>
-          <button class={styles.actionButton}>
-            <FiDollarSign />
-            <span>Custom Rates</span>
-            <p>Manage your negotiated rates</p>
-          </button>
-          <button class={styles.actionButton}>
-            <FiClock />
-            <span>Recent Searches</span>
-            <p>View your search history</p>
-          </button>
-        </div>
-      </section>
-
       {/* Featured Deals Section */}
       <section class={styles.featuredSection}>
         <div class={styles.sectionHeader}>
@@ -522,17 +491,6 @@ function Home() {
           </div>
         </div>
       </aside>
-
-      {/* Action Buttons */}
-      <div class={styles.actionButtons}>
-        <button 
-          onClick={handleNewQuote}
-          class={styles.newQuoteButton}
-        >
-          <FiPlusCircle />
-          <span>Create New Quote</span>
-        </button>
-      </div>
     </div>
   );
 }
