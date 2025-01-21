@@ -3,7 +3,7 @@ import solidPlugin from 'vite-plugin-solid';
 
 export default defineConfig({
   plugins: [solidPlugin()],
-  base: '/https://github.com/noobiecoder75/noobiecoder75.github.io/',
+  base: '/',
   server: {
     port: 3000,
   },
