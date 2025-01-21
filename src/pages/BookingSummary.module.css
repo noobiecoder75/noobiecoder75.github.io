@@ -1,0 +1,1344 @@
+.bookingSummaryPage {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  min-height: 100vh;
+  background: #f8f9fa;
+}
+
+.container {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* Header Section */
+.header {
+  margin-bottom: 2rem;
+}
+
+.header h1 {
+  color: #2c3e50;
+  margin-bottom: 1rem;
+  font-size: 1.8rem;
+}
+
+.tripSummary {
+  background: #f8f9fa;
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 1px solid #dee2e6;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.destination {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #2c3e50;
+}
+
+.arrow {
+  color: #3498db;
+}
+
+.dates, .passengers {
+  color: #666;
+  font-size: 0.95rem;
+}
+
+/* Booking Items */
+.bookingItems {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.bookingCard {
+  background: white;
+  border-radius: 10px;
+  border: 1px solid #dee2e6;
+  padding: 1rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  min-height: 280px;
+}
+
+.bookingCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.cardTitle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #2c3e50;
+}
+
+.cardTitle svg {
+  width: 1.2em;
+  height: 1.2em;
+  color: #3498db;
+}
+
+.cardTitle h2 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.editButton {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: #e1f0ff;
+  border: none;
+  border-radius: 6px;
+  color: #3498db;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.editButton:hover {
+  background: #cce5ff;
+  transform: translateY(-1px);
+}
+
+/* Flight Details */
+.flightDetails {
+  margin-bottom: 0.75rem;
+  position: relative;
+  flex: 1;
+  padding-bottom: 1rem;
+}
+
+.route {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+  background: #f8f9fa;
+  padding: 0.75rem;
+  border-radius: 8px;
+}
+
+.departure, .arrival {
+  text-align: center;
+  flex: 1;
+}
+
+.departure h3, .arrival h3 {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #2c3e50;
+  font-weight: 600;
+}
+
+.departure p, .arrival p {
+  margin: 0.25rem 0 0;
+  color: #666;
+  font-size: 0.85rem;
+}
+
+.duration {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0 1rem;
+}
+
+.line {
+  width: 80px;
+  height: 2px;
+  background: #3498db;
+  position: relative;
+}
+
+.time {
+  font-size: 0.8rem;
+  color: #666;
+  background: #e1f0ff;
+  padding: 0.2rem 0.5rem;
+  border-radius: 12px;
+}
+
+.flightInfo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  color: #666;
+  font-size: 0.85rem;
+  margin-top: 0.75rem;
+}
+
+.flightBadge {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: #f8f9fa;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+}
+
+/* View More Button */
+.viewMoreButton {
+  width: 100%;
+  text-align: center;
+  padding: 0.5rem;
+  background: none;
+  border: none;
+  color: #3498db;
+  cursor: pointer;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.viewMoreButton:hover {
+  color: #2980b9;
+  background: #f8f9fa;
+  border-radius: 6px;
+}
+
+/* Expanded Flight Details */
+.expandedDetails {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #dee2e6;
+}
+
+.detailsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.detailItem {
+  background: #f8f9fa;
+  padding: 0.75rem;
+  border-radius: 8px;
+}
+
+.detailItem h4 {
+  margin: 0 0 0.5rem 0;
+  font-size: 0.85rem;
+  color: #666;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.detailItem p {
+  margin: 0;
+  color: #2c3e50;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+/* Card content wrapper */
+.cardContent {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+/* Price display for all cards */
+.price {
+  margin-top: auto;
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: right;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #2c3e50;
+  padding: 0.75rem;
+  border-radius: 8px;
+  background: rgba(52, 152, 219, 0.1);
+  border: 1px solid rgba(52, 152, 219, 0.2);
+}
+
+/* Card type specific content */
+.hotelDetails,
+.transferDetails,
+.activityDetails,
+.flightDetails {
+  flex: 1;
+  padding-bottom: 1rem;
+}
+
+/* Add price label for all cards */
+.price::before {
+  content: attr(data-type) ' Price';
+  display: block;
+  font-size: 0.8rem;
+  color: #3498db;
+  margin-bottom: 0.25rem;
+  font-weight: 500;
+}
+
+/* Special styling for flight card price */
+.bookingCard[data-type="flight"] .price {
+  display: block;
+  max-width: none;
+  width: 95%;
+  margin: 0.75rem auto 0;
+  background: rgba(52, 152, 219, 0.1);
+  border-color: rgba(52, 152, 219, 0.2);
+}
+
+.bookingCard[data-type="flight"] .price::before {
+  color: #3498db;
+}
+
+/* Different colors for different card types */
+.bookingCard[data-type="hotel"] .price {
+  background: rgba(46, 204, 113, 0.1);
+  border-color: rgba(46, 204, 113, 0.2);
+}
+
+.bookingCard[data-type="hotel"] .price::before {
+  color: #2ecc71;
+}
+
+.bookingCard[data-type="transfer"] .price {
+  background: rgba(155, 89, 182, 0.1);
+  border-color: rgba(155, 89, 182, 0.2);
+}
+
+.bookingCard[data-type="transfer"] .price::before {
+  color: #9b59b6;
+}
+
+.bookingCard[data-type="activity"] .price {
+  background: rgba(241, 196, 15, 0.1);
+  border-color: rgba(241, 196, 15, 0.2);
+}
+
+.bookingCard[data-type="activity"] .price::before {
+  color: #f1c40f;
+}
+
+/* Connection Info */
+.connectionInfo {
+  margin: 1rem 0;
+  padding: 0.75rem;
+  background: #fff3cd;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.85rem;
+  color: #856404;
+}
+
+/* Hotel Details */
+.hotelDetails {
+  padding: 0.75rem 0;
+}
+
+.hotelDetails h3 {
+  margin: 0 0 0.35rem;
+  color: #2c3e50;
+  font-size: 1rem;
+}
+
+.hotelDetails p {
+  margin: 0.2rem 0;
+  line-height: 1.4;
+  color: #666;
+}
+
+/* Transfer Details */
+.transferDetails {
+  padding: 0.75rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.transferDetails h3 {
+  color: #2c3e50;
+  margin: 0;
+  font-size: 1rem;
+}
+
+.transferRoute {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #666;
+}
+
+.transferDate {
+  display: inline-block;
+  background: #e1f0ff;
+  color: #3498db;
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.85rem;
+}
+
+.transferVehicle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #666;
+}
+
+.transferVehicle svg {
+  color: #3498db;
+}
+
+/* Activities Details */
+.activitiesDetails {
+  padding: 1rem 0;
+}
+
+.activitiesDetails ul {
+  margin: 0.5rem 0;
+  padding-left: 1.5rem;
+  color: #666;
+}
+
+.activitiesDetails li {
+  margin: 0.25rem 0;
+}
+
+/* Flight Options Modal */
+.flightOptionsModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  cursor: pointer;
+}
+
+.modalContent {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 800px;
+  max-height: 80vh;
+  overflow-y: auto;
+  position: relative;
+  cursor: default;
+}
+
+.flightList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.flightOption {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.flightOption:hover {
+  background: #f8f9fa;
+  transform: translateY(-2px);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Summary Section */
+.summary {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid #dee2e6;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.totalPrice {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.totalPrice span:first-child {
+  font-size: 1rem;
+  color: #666;
+}
+
+.totalPrice span:last-child {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.backButton, .paymentButton {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.backButton {
+  background: #f8f9fa;
+  border: 1px solid #dee2e6;
+  color: #666;
+}
+
+.paymentButton {
+  background: #3498db;
+  border: none;
+  color: white;
+  font-weight: 500;
+}
+
+.backButton:hover {
+  background: #e9ecef;
+}
+
+.paymentButton:hover {
+  background: #2980b9;
+  transform: translateY(-1px);
+}
+
+/* Loading State */
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 2rem;
+}
+
+.spinner {
+  animation: spin 1s linear infinite;
+  font-size: 2rem;
+  color: #3498db;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .bookingSummaryPage {
+    padding: 1rem;
+  }
+
+  .container {
+    padding: 1.5rem;
+  }
+
+  .tripSummary {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+
+  .destination {
+    justify-content: center;
+  }
+
+  .summary {
+    flex-direction: column;
+    gap: 1.5rem;
+    text-align: center;
+  }
+
+  .actions {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .backButton, .paymentButton {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 1024px) {
+  .bookingItems {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Modal Header with Live Indicator */
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.liveIndicator {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: #2ecc71;
+  font-size: 0.75rem;
+  padding: 0.2rem 0.4rem;
+}
+
+.liveIcon {
+  animation: pulse 2s infinite;
+  width: 0.7em;
+  height: 0.7em;
+}
+
+.lastUpdate {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  color: #666;
+  font-size: 0.8rem;
+}
+
+.flightSystemInfo {
+  background: #f8f9fa;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.flightSystemInfo p {
+  color: #666;
+  margin: 0 0 0.5rem 0;
+  font-size: 0.9rem;
+}
+
+.flightStats {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: #3498db;
+  font-size: 0.9rem;
+}
+
+.loadingDetail {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Update card header */
+.cardActions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.cardHeader .liveIndicator {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #2ecc71;
+  font-size: 0.8rem;
+  padding: 0.25rem 0.5rem;
+  background: rgba(46, 204, 113, 0.1);
+  border-radius: 4px;
+}
+
+.cardHeader .liveIcon {
+  animation: pulse 2s infinite;
+  width: 0.8em;
+  height: 0.8em;
+}
+
+/* Modal close button */
+.modalControls {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  color: #666;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  line-height: 1;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+}
+
+.closeButton:hover {
+  background: #f8f9fa;
+  color: #2c3e50;
+}
+
+/* Common Modal Styles */
+.optionsModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  cursor: pointer;
+}
+
+/* Option Cards */
+.optionsList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.optionCard {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.optionCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.optionCard:hover::after {
+  content: 'Select';
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: #3498db;
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  opacity: 0.9;
+}
+
+.optionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.optionHeader h3 {
+  margin: 0;
+  color: #2c3e50;
+  font-size: 1.2rem;
+}
+
+/* Hotel specific styles */
+.rating {
+  color: #f1c40f;
+  font-size: 1.1rem;
+  letter-spacing: 2px;
+}
+
+.roomType {
+  color: #3498db;
+  font-weight: 500;
+  margin: 0 0 0.5rem 0;
+}
+
+.amenities {
+  color: #666;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.availability {
+  color: #27ae60;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+/* Transfer specific styles */
+.transferOption {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 2rem;
+  align-items: center;
+  padding: 1rem;
+}
+
+.transferIcon {
+  width: 48px;
+  height: 48px;
+  background: #e1f0ff;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #3498db;
+}
+
+.transferIcon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.transferInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.transferInfo h3 {
+  margin: 0;
+  color: #2c3e50;
+  font-size: 1.1rem;
+}
+
+.transferCapacity {
+  color: #666;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.transferFeatures {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.transferFeature {
+  background: #f8f9fa;
+  color: #666;
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.transferFeature svg {
+  width: 16px;
+  height: 16px;
+  color: #3498db;
+}
+
+/* Different transfer type styles */
+.transferCard.arrival .transferIcon {
+  background: #e1f0ff;
+  color: #3498db;
+}
+
+.transferCard.departure .transferIcon {
+  background: #e8f5e9;
+  color: #4caf50;
+}
+
+.transferCard.additional .transferIcon {
+  background: #fff3e0;
+  color: #ff9800;
+}
+
+/* Activity specific styles */
+.activityDetails {
+  padding: 0.75rem 0;
+}
+
+.activityDetails h3 {
+  color: #3498db;
+  margin: 0 0 0.5rem 0;
+  font-size: 1rem;
+}
+
+.activityName {
+  color: #2c3e50;
+  font-weight: 500;
+  margin: 0 0 0.35rem 0;
+  font-size: 0.95rem;
+}
+
+.activityDuration {
+  display: inline-block;
+  background: #e1f0ff;
+  color: #3498db;
+  padding: 0.2rem 0.6rem;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  margin: 0.35rem 0;
+}
+
+.activityDescription {
+  color: #666;
+  font-size: 0.85rem;
+  line-height: 1.3;
+  margin: 0.35rem 0;
+}
+
+/* Activity Modal specific styles */
+.activityModalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.activityModalHeader h2 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.activityModalHeader h2 span {
+  background: #e1f0ff;
+  color: #3498db;
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.9rem;
+}
+
+.activityHighlights {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+
+.highlight {
+  background: #f8f9fa;
+  color: #666;
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.85rem;
+}
+
+/* Update option card for activities */
+.optionCard.activity {
+  display: grid;
+  gap: 1rem;
+}
+
+.optionCard.activity .optionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.optionCard.activity .availability {
+  color: #27ae60;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .modalContent {
+    width: 95%;
+    padding: 1rem;
+  }
+
+  .optionCard {
+    padding: 1rem;
+  }
+
+  .transferOption {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 1rem;
+  }
+
+  .transferIcon {
+    margin: 0 auto;
+  }
+
+  .transferFeatures {
+    justify-content: center;
+  }
+
+  .transferInfo {
+    align-items: center;
+  }
+
+  .transferDetails {
+    text-align: center;
+  }
+}
+
+/* Error States */
+.errorIndicator {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #e74c3c;
+  font-size: 0.75rem;
+  padding: 0.2rem 0.4rem;
+  background: rgba(231, 76, 60, 0.1);
+  border-radius: 4px;
+  position: relative;
+  cursor: help;
+}
+
+.errorIcon {
+  animation: pulse 2s infinite;
+  width: 0.7em;
+  height: 0.7em;
+}
+
+.errorTooltip {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  background: white;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  width: 200px;
+  font-size: 0.9rem;
+  color: #2c3e50;
+  z-index: 10;
+  display: none;
+  flex-direction: column;
+  gap: 0.75rem;
+  border: 1px solid #dee2e6;
+}
+
+.errorIndicator:hover .errorTooltip {
+  display: flex;
+}
+
+.retryButton {
+  background: #f8f9fa;
+  border: 1px solid #dee2e6;
+  padding: 0.5rem;
+  border-radius: 4px;
+  color: #666;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.85rem;
+}
+
+.retryButton:hover {
+  background: #e9ecef;
+  color: #2c3e50;
+}
+
+.editButton.warning {
+  background: #fff5f5;
+  color: #e74c3c;
+}
+
+.editButton.warning:hover {
+  background: #ffe9e9;
+}
+
+/* Add arrow to tooltip */
+.errorTooltip::before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  right: 20px;
+  width: 10px;
+  height: 10px;
+  background: white;
+  transform: rotate(45deg);
+  border-left: 1px solid #dee2e6;
+  border-top: 1px solid #dee2e6;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .errorTooltip {
+    right: auto;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .errorTooltip::before {
+    right: auto;
+    left: 50%;
+    transform: translateX(-50%) rotate(45deg);
+  }
+}
+
+/* Action Buttons */
+.actionButtons {
+  display: flex;
+  gap: 0.35rem;
+}
+
+.deleteButton {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.75rem;
+  background: #fff5f5;
+  border: none;
+  border-radius: 6px;
+  color: #e74c3c;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.9rem;
+}
+
+.deleteButton:hover {
+  background: #ffe9e9;
+  transform: translateY(-1px);
+}
+
+/* Confirmation Modal */
+.confirmModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1100;
+}
+
+.confirmContent {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+}
+
+.confirmContent h3 {
+  color: #2c3e50;
+  margin: 0 0 1rem 0;
+}
+
+.confirmContent p {
+  color: #666;
+  margin-bottom: 1.5rem;
+}
+
+.confirmActions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.cancelButton, .confirmButton {
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cancelButton {
+  background: #f8f9fa;
+  border: 1px solid #dee2e6;
+  color: #666;
+}
+
+.confirmButton {
+  background: #e74c3c;
+  border: none;
+  color: white;
+}
+
+.cancelButton:hover {
+  background: #e9ecef;
+}
+
+.confirmButton:hover {
+  background: #c0392b;
+  transform: translateY(-1px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .actionButtons {
+    width: 100%;
+    justify-content: flex-end;
+  }
+
+  .confirmContent {
+    margin: 1rem;
+    padding: 1.5rem;
+  }
+}
+
+/* Update Booking Items Grid */
+.bookingItems {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Make flight card span full width */
+.bookingCard[data-type="flight"] {
+  grid-column: 1 / -1;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(to right, #f8f9fa, white);
+  border-left: 4px solid #3498db;
+  padding: 1.25rem;
+}
+
+/* Enhance flight card specific styles */
+.bookingCard[data-type="flight"] .cardHeader {
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+}
+
+.bookingCard[data-type="flight"] .route {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.bookingCard[data-type="flight"] .flightInfo {
+  max-width: 900px;
+  margin: 1rem auto;
+}
+
+.bookingCard[data-type="flight"] .expandedDetails {
+  max-width: 900px;
+  margin: 1rem auto;
+}
+
+.bookingCard[data-type="flight"] .price {
+  display: block;
+  max-width: none;
+  width: 95%;
+  margin: 0.75rem auto 0;
+  background: rgba(52, 152, 219, 0.1);
+  border-color: rgba(52, 152, 219, 0.2);
+}
+
+.bookingCard[data-type="flight"] .price::before {
+  color: #3498db;
+}
+
+/* Flight Section Styles */
+.flightSection {
+  padding: 1rem;
+  background: white;
+  border-radius: 8px;
+  margin-bottom: 0.75rem;
+}
+
+.flightSection:last-child {
+  margin-bottom: 0;
+}
+
+.flightLabel {
+  color: #3498db;
+  font-weight: 500;
+  font-size: 0.85rem;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.35rem;
+}
+
+.route {
+  padding: 0.5rem 0.75rem;
+}
+
+.departure h3, .arrival h3 {
+  font-size: 0.9rem;
+}
+
+.departure p, .arrival p {
+  font-size: 0.8rem;
+  margin-top: 0.2rem;
+}
+
+.duration {
+  gap: 0.2rem;
+  padding: 0 0.75rem;
+}
+
+.line {
+  width: 60px;
+}
+
+.time {
+  font-size: 0.75rem;
+  padding: 0.15rem 0.4rem;
+}
+
+.flightInfo {
+  margin: 0.75rem auto 0;
+}
+
+.flightBadge {
+  padding: 0.2rem 0.4rem;
+  font-size: 0.75rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .flightSection {
+    padding: 1rem;
+  }
+  
+  .flightLabel {
+    text-align: center;
+  }
+} 

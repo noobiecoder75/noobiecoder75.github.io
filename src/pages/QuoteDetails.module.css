@@ -1,0 +1,513 @@
+.quoteDetailsPage {
+  padding: 2rem;
+  background: #f8f9fa;
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.backButton {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: none;
+  border: none;
+  color: #3498db;
+  cursor: pointer;
+  margin-bottom: 2rem;
+}
+
+.quoteContent {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.tripInfo {
+  flex: 1;
+  margin-right: 2rem;
+}
+
+.tripInfo h1 {
+  color: #2c3e50;
+  font-size: 1.8rem;
+  margin: 0 0 1rem 0;
+}
+
+.destination {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.origin, .destinationCity {
+  font-weight: 500;
+  color: #2c3e50;
+}
+
+.arrow {
+  color: #3498db;
+}
+
+.summary {
+  color: #666;
+  line-height: 1.5;
+  margin: 1rem 0;
+  font-size: 1.1rem;
+}
+
+.transportation {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: #f8f9fa;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  margin-top: 1rem;
+}
+
+.transportation svg {
+  color: #3498db;
+  flex-shrink: 0;
+}
+
+.transportation p {
+  color: #666;
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.amount {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #3498db;
+  background: #e1f0ff;
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+}
+
+.meta {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.metaItem {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.metaItem span:first-child {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.metaItem span:last-child {
+  color: #2c3e50;
+  font-weight: 500;
+}
+
+.status {
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.status.sent {
+  background-color: #fff3cd;
+  color: #fd7e14;
+}
+
+.status.booked {
+  background-color: #d4edda;
+  color: #2ecc71;
+}
+
+.status.pending {
+  background-color: #e1f0ff;
+  color: #3498db;
+}
+
+.status.expired {
+  background-color: #f8f9fa;
+  color: #6c757d;
+}
+
+.itinerary {
+  margin-bottom: 2rem;
+}
+
+.itinerary h2 {
+  color: #2c3e50;
+  margin-bottom: 1rem;
+}
+
+.dayPlan {
+  background: #f8f9fa;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.dayPlan h3 {
+  color: #3498db;
+  margin: 0 0 0.5rem 0;
+}
+
+.dayPlan p {
+  color: #666;
+  line-height: 1.5;
+}
+
+.actions {
+  display: flex;
+  gap: 1rem;
+  padding-top: 2rem;
+  border-top: 1px solid #dee2e6;
+}
+
+.actionButton {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  background: white;
+  color: #666;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.actionButton:hover {
+  background: #f8f9fa;
+  border-color: #3498db;
+  color: #3498db;
+}
+
+.deleteButton {
+  margin-left: auto;
+  color: #e74c3c;
+}
+
+.deleteButton:hover {
+  background: #fff5f5;
+  border-color: #e74c3c;
+  color: #e74c3c;
+}
+
+.tripMeta {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.tripMeta span {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.priceSection {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: flex-end;
+}
+
+.bookingItems {
+  display: grid;
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.bookingCard {
+  display: flex;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: #f8f9fa;
+  border-radius: 12px;
+  border: 1px solid #dee2e6;
+}
+
+.cardIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: white;
+  border-radius: 8px;
+  color: #3498db;
+}
+
+.cardContent {
+  flex: 1;
+}
+
+.cardContent h3 {
+  margin: 0 0 1rem 0;
+  color: #2c3e50;
+}
+
+.flightDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.flightSection {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 1.25rem;
+}
+
+.flightSection h4 {
+  color: #3498db;
+  margin: 0 0 1rem 0;
+  font-size: 1.1rem;
+}
+
+.flightInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.airline {
+  font-weight: 600;
+  color: #2c3e50;
+  font-size: 1.1rem;
+}
+
+.route {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1.2rem;
+  color: #2c3e50;
+  padding: 0.5rem 0;
+}
+
+.arrow {
+  color: #3498db;
+  font-weight: 500;
+}
+
+.flightMeta {
+  display: flex;
+  gap: 1.5rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid #dee2e6;
+  margin-top: 0.5rem;
+}
+
+.flightClass,
+.flightTime,
+.flightDuration {
+  color: #666;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.flightClass::before {
+  content: '✈';
+}
+
+.flightTime::before {
+  content: '🕒';
+}
+
+.flightDuration::before {
+  content: '⏱';
+}
+
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .tripInfo {
+    margin-right: 0;
+  }
+
+  .destination {
+    flex-wrap: wrap;
+  }
+
+  .transportation {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .amount {
+    align-self: flex-start;
+  }
+
+  .meta {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .actions {
+    flex-wrap: wrap;
+  }
+
+  .actionButton {
+    flex: 1;
+    justify-content: center;
+  }
+
+  .deleteButton {
+    margin-left: 0;
+  }
+
+  .bookingCard {
+    flex-direction: column;
+  }
+
+  .cardIcon {
+    align-self: flex-start;
+  }
+
+  .flightMeta {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .route {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .arrow {
+    transform: rotate(90deg);
+  }
+}
+
+/* Add error and loading states */
+.loadingState {
+  text-align: center;
+  padding: 2rem;
+  color: #666;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.errorState {
+  text-align: center;
+  padding: 2rem;
+  background: #fff5f5;
+  border-radius: 12px;
+  border: 1px solid #feb2b2;
+  color: #e74c3c;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.errorState svg {
+  width: 48px;
+  height: 48px;
+}
+
+.errorState p {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.retryButton {
+  background: #e74c3c;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+}
+
+.retryButton:hover {
+  background: #c0392b;
+}
+
+.editButton {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: #3498db;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-bottom: 1rem;
+}
+
+.editButton:hover {
+  background: #2980b9;
+}
+
+.hotelDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.itemPrice {
+  margin-top: 1rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #2c3e50;
+  text-align: right;
+}
+
+.commission {
+  margin-top: 1rem;
+  padding: 0.75rem 1rem;
+  background: #e1f0ff;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.commission span:first-child {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.commission span:last-child {
+  font-weight: 600;
+  color: #3498db;
+  font-size: 1.1rem;
+} 

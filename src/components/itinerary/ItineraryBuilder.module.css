@@ -1,0 +1,690 @@
+.builderContainer {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: 2rem;
+  padding: 2rem;
+  max-width: 1600px;
+  margin: 0 auto;
+  min-height: calc(100vh - 60px);
+}
+
+/* Search Panel Styles */
+.searchPanel {
+  background-color: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  width: 100%;
+  min-width: 0;
+}
+
+.searchCriteria {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin: 1.5rem 0;
+}
+
+.criteriaGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.criteriaGroup label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #2c3e50;
+  font-weight: 500;
+}
+
+.criteriaGroup input {
+  padding: 0.75rem;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+}
+
+.criteriaGroup input:focus {
+  border-color: #3498db;
+  outline: none;
+}
+
+.dateInputs {
+  display: flex;
+  gap: 1rem;
+}
+
+.searchButton {
+  width: 100%;
+  padding: 1rem;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-bottom: 1.5rem;
+}
+
+.searchButton:hover {
+  background-color: #2980b9;
+}
+
+/* Search Results Styles */
+.searchResults {
+  border-top: 2px solid #f0f0f0;
+  padding-top: 1.5rem;
+}
+
+.searchResultItem {
+  background-color: #f8f9fa;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.searchResultItem:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.flightResult, .hotelResult {
+  margin-bottom: 0.5rem;
+}
+
+.flightDetails, .hotelDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  color: #666;
+}
+
+.priceTag {
+  font-size: 1.2rem;
+  color: #27ae60;
+  font-weight: bold;
+  margin-top: 0.5rem;
+}
+
+/* Itinerary Panel Styles */
+.itineraryPanel {
+  background-color: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  max-width: 500px;
+  width: 100%;
+}
+
+.itineraryList {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem 0;
+}
+
+.segment {
+  background-color: #f8f9fa;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  cursor: move;
+}
+
+.dragHandle {
+  color: #666;
+  cursor: grab;
+  font-size: 1.5rem;
+}
+
+.segmentContent {
+  flex: 1;
+}
+
+.itinerarySummary {
+  border-top: 2px solid #f0f0f0;
+  padding-top: 1.5rem;
+  margin-top: auto;
+}
+
+.summaryDetails {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.summaryItem {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.summaryItem span:last-child {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+.saveButton {
+  width: 100%;
+  padding: 1rem;
+  background-color: #27ae60;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.saveButton:hover {
+  background-color: #219a52;
+}
+
+@media (max-width: 1200px) {
+  .builderContainer {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .builderContainer {
+    padding: 1rem;
+  }
+
+  .dateInputs {
+    flex-direction: column;
+  }
+}
+
+.errorMessage {
+  background-color: #fee2e2;
+  color: #dc2626;
+  padding: 0.75rem;
+  border-radius: 8px;
+  margin: 1rem 0;
+  text-align: center;
+}
+
+.loadingOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.locationInput {
+  position: relative;
+  width: 100%;
+}
+
+.suggestions {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-top: 4px;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 1000;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.suggestionItem {
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.suggestionItem:hover {
+  background-color: #f8f9fa;
+}
+
+.cityName {
+  font-weight: 500;
+}
+
+.iataCode {
+  color: #666;
+  font-size: 0.9em;
+}
+
+.flightCard {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  transition: all 0.2s ease;
+}
+
+.flightHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.airline {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #2c3e50;
+}
+
+.price {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #27ae60;
+}
+
+.routeInfo {
+  border-left: 2px solid #3498db;
+  padding-left: 1rem;
+  margin: 1rem 0;
+}
+
+.route {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 2rem;
+  align-items: center;
+}
+
+.locationTime {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.time {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #2c3e50;
+}
+
+.location {
+  font-size: 1rem;
+  color: #666;
+}
+
+.date {
+  font-size: 0.8rem;
+  color: #888;
+}
+
+.flightDuration {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.duration {
+  font-size: 0.875rem;
+  color: #666;
+}
+
+.flightLine {
+  position: relative;
+  width: 150px;
+  height: 2px;
+  background: #ddd;
+}
+
+.airplane {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #3498db;
+}
+
+.flightNumber {
+  font-size: 0.875rem;
+  color: #666;
+}
+
+.flightActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.detailsButton {
+  background-color: transparent;
+  border: 1px solid #ddd;
+  color: #666;
+}
+
+.detailsButton:hover {
+  border-color: #3498db;
+  color: #3498db;
+}
+
+.flightDetails {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #eee;
+}
+
+.journey {
+  margin-top: 1rem;
+}
+
+.segment {
+  margin: 1rem 0;
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+}
+
+.loadMoreButton {
+  width: 100%;
+  padding: 1rem;
+  background: #f8f9fa;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+.loadMoreButton:hover {
+  background: #e9ecef;
+}
+
+.flightInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin: 0.5rem 0;
+}
+
+.route {
+  font-size: 1.1rem;
+  color: #2c3e50;
+  font-weight: 500;
+}
+
+.flightDetails {
+  display: flex;
+  gap: 1rem;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.segmentContent .price {
+  font-weight: bold;
+  color: #27ae60;
+  font-size: 1.1rem;
+}
+
+.compactSegmentDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.flightIdentifier {
+  font-weight: 500;
+  color: #2c3e50;
+}
+
+.timelineView {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.5rem;
+  background: white;
+  border-radius: 4px;
+}
+
+.timeLocation {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.terminal {
+  font-size: 0.75rem;
+  color: #666;
+  margin-left: 0.25rem;
+}
+
+.flightPath {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.pathLine {
+  position: relative;
+  width: 100%;
+  height: 2px;
+  background: #ddd;
+}
+
+.airplane {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #3498db;
+  font-size: 0.875rem;
+}
+
+.compactItineraryFlight {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0.5rem;
+}
+
+.flightMainInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.miniRoute {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  color: #2c3e50;
+}
+
+.miniArrow {
+  color: #3498db;
+  font-weight: bold;
+}
+
+.returnArrow {
+  color: #e74c3c;
+  margin-left: 0.5rem;
+  font-weight: bold;
+}
+
+.flightSecondaryInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.25rem;
+}
+
+.date {
+  font-size: 0.875rem;
+  color: #666;
+}
+
+.segment {
+  padding: 0.75rem;
+  background: white;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+}
+
+.segment:hover {
+  border-color: #3498db;
+}
+
+.loading {
+  padding: 2rem;
+  text-align: center;
+  color: #666;
+}
+
+.error {
+  padding: 1rem;
+  margin: 1rem 0;
+  background-color: #fee2e2;
+  border: 1px solid #ef4444;
+  border-radius: 8px;
+  color: #dc2626;
+}
+
+.searchResults {
+  margin-top: 2rem;
+}
+
+.flightCard {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.flightCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+/* Update existing button styles */
+.detailsButton, .addButton, .saveButton, .loadMoreButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: white;
+  color: #666;
+}
+
+.detailsButton:hover, .loadMoreButton:hover {
+  border-color: #3498db;
+  color: #3498db;
+}
+
+.addButton, .saveButton {
+  background-color: #3498db;
+  color: white;
+  border: none;
+}
+
+.addButton:hover, .saveButton:hover {
+  background-color: #2980b9;
+}
+
+.flightActions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.loadMoreButton {
+  width: 100%;
+  margin-top: 1rem;
+}
+
+/* Update the remove button in the itinerary */
+.removeButton {
+  padding: 0.5rem 1rem;
+  border: 1px solid #ef4444;
+  border-radius: 8px;
+  background: white;
+  color: #ef4444;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.removeButton:hover {
+  background: #ef4444;
+  color: white;
+}
+
+/* Update the add button styles */
+.addButton {
+  position: relative;
+  overflow: hidden;
+  background-color: #27ae60;
+  min-width: 150px;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.addButton:hover {
+  background-color: #219a52;
+}
+
+.buttonContent {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.priceText {
+  color: white;
+  font-weight: 500;
+}
+
+.addText {
+  display: none;
+}
+
+.addButton:hover .priceText {
+  display: none;
+}
+
+.addButton:hover .addText {
+  display: inline-block;
+} 

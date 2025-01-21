@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: travel_user
+      POSTGRES_PASSWORD: travel_pass
+      POSTGRES_DB: travel_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  inventory-service:
+    build: ./services/inventory-service
+    environment:
+      - NODE_ENV=development
+      - PORT=3001
+      - DATABASE_URL=postgresql://travel_user:travel_pass@postgres:5432/travel_db
+    ports:
+      - "3001:3001"
+    depends_on:
+      - postgres
+
+  search-service:
+    build: ./services/search-service
+    environment:
+      - NODE_ENV=development
+      - PORT=3002
+      - INVENTORY_SERVICE_URL=http://inventory-service:3001
+    ports:
+      - "3002:3002"
+    depends_on:
+      - inventory-service
+
+volumes:
+  postgres_data: 
